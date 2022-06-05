@@ -1,10 +1,16 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import columnReducer from '../features/counter/Slices/columnSlice';
+import toolbarReducer from '../features/counter/Slices/toolbarSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    columns: columnReducer,
+    toolbar: toolbarReducer,
   },
+  middleware: getDefaultMiddleware =>
+  getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
 
 export type AppDispatch = typeof store.dispatch;

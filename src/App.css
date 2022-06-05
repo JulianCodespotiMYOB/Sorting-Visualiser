@@ -1,39 +1,49 @@
 .App {
   text-align: center;
+  background-color: rgb(230, 230, 230);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Toolbar {
+  background-color: rgba(31, 51, 74, 0.319);
+  height: 60px;
+  padding-bottom: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+.Body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.App-header {
-  min-height: 100vh;
+button {
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 10px 40px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: default;
+}
+
+.Column{
+  transform: rotate(180deg);
+  writing-mode: vertical-lr;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: rgb(112, 76, 182);
-}
-
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  align-items: center;
+  font: bold 20px/1.5 sans-serif;
 }
