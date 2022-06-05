@@ -1,6 +1,5 @@
 import { Dispatch, AnyAction } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
-import { store } from '../../../../app/store';
 import { setColumns, swapColumns } from '../../Slices/columnSlice';
 import BubbleSort from '../../SortingAlgorithms/BubbleSort';
 import ColumnAmountSlider from './ColumnAmountSlider';

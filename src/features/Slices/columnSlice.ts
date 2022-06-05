@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, current, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../../app/store';
 
 export interface Column {
 	width: number;

@@ -1,6 +1,4 @@
 import { useSelector } from "react-redux";
-import { store } from "../../../../app/store";
-import Column from "../Column";
 import ColumnsOnPlatform from "../ColumnsOnPlatform";
 import Platform from "../Platform";
 

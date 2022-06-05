@@ -1,10 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Body from './features/counter/Components/Body/Body';
-import { useDispatch } from 'react-redux';
-import { setColumns } from './features/counter/Slices/columnSlice';
-import Toolbar from './features/counter/Components/Toolbar/Toolbar';
+import Body from './features/Components/Body/Body';
+import Toolbar from './features/Components/Toolbar/Toolbar';
 
 function App() {
   return (

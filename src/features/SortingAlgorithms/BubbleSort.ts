@@ -1,4 +1,3 @@
-
 import { sleep } from '../Common/sleep';
 import { colourSelectedColumns, Column, swapColumns } from '../Slices/columnSlice';
 import { enableButtons } from '../Slices/toolbarSlice';
