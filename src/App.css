@@ -38,7 +38,7 @@ button:disabled {
   cursor: default;
 }
 
-.Column{
+.Column {
   transform: rotate(180deg);
   writing-mode: vertical-lr;
   display: flex;

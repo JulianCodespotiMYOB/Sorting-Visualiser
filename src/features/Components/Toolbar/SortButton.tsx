@@ -1,21 +1,37 @@
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
-import { AnyMap } from 'immer/dist/internal';
-import { Column, setColumns } from '../../Slices/columnSlice';
-import { disableButtons, enableButtons } from '../../Slices/toolbarSlice';
+import { useCallback } from 'react';
+import { Column } from '../../Slices/columnSlice';
+import { disableButtons } from '../../Slices/toolbarSlice';
 import BubbleSort from '../../SortingAlgorithms/BubbleSort';
+import QuickSort from '../../SortingAlgorithms/QuickSort';
 
-function SortButton(props: any) {
-	return (
-		<button disabled={props.disabled} onClick={() => handleOnClick(props.dispatch, props.columns)}>
-			Bubble Sort
-		</button>
-	);
+interface Props {
+  dispatch: Dispatch<AnyAction>;
+  columns: Column[];
+  disabled: boolean;
 }
 
-function handleOnClick(dispatch: any, columns: Column[]) {
-    debugger;
-    dispatch(disableButtons())
-	BubbleSort(columns, dispatch);
+function SortButton({ dispatch, columns, disabled }: Props) {
+  const onClickBubblesort = useCallback(() => {
+    dispatch(disableButtons());
+    BubbleSort(columns, dispatch);
+  }, [columns, dispatch]);
+
+  const onClickQuicksort = useCallback(() => {
+    dispatch(disableButtons());
+    QuickSort(columns, dispatch);
+  }, [columns, dispatch]);
+
+  return (
+    <>
+      <button disabled={disabled} onClick={onClickBubblesort} type="button">
+        Bubble Sort
+      </button>
+      <button disabled={disabled} onClick={onClickQuicksort} type="button">
+        Quick Sort
+      </button>
+    </>
+  );
 }
 
 export default SortButton;

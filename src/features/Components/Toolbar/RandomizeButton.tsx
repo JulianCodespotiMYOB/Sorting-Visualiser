@@ -1,15 +1,23 @@
-import { AnyMap } from 'immer/dist/internal';
-import { setColumns } from '../../Slices/columnSlice';
+import { AnyAction } from '@reduxjs/toolkit';
+import { Dispatch, useCallback } from 'react';
+import { Column, setColumns } from '../../Slices/columnSlice';
 
-function RandomizeButton(props: any) {
-	return (
-		<button
-            disabled={props.disabled}
-			onClick={() => props.dispatch(setColumns(10))}
-		>
-			Randomize
-		</button>
-	);
+interface Props {
+  dispatch: Dispatch<AnyAction>;
+  columns: Column[];
+  disabled: boolean;
+}
+
+function RandomizeButton({ dispatch, columns, disabled }: Props) {
+  const onRandomizeButtonClick = useCallback(() => {
+    dispatch(setColumns());
+  }, [columns, dispatch]);
+
+  return (
+    <button disabled={disabled} onClick={onRandomizeButtonClick} type="button">
+      Randomize
+    </button>
+  );
 }
 
 export default RandomizeButton;

@@ -1,20 +1,22 @@
-import { createAsyncThunk, createSlice, current, PayloadAction } from '@reduxjs/toolkit';
+import {
+  createSlice,
+} from '@reduxjs/toolkit';
 
 const initialState = {
-	disabled: false,
+  disabled: false,
 };
 
 export const toolbarSlice = createSlice({
-	name: 'toolbar',
-	initialState,
-	reducers: {
-		disableButtons: (state: any) => {
-			state.disabled = true;
-		},
-		enableButtons: (state: any) => {
-			state.disabled = false;
-		},
-	},
+  name: 'toolbar',
+  initialState,
+  reducers: {
+    disableButtons: (state: any) => {
+      state.disabled = true;
+    },
+    enableButtons: (state: any) => {
+      state.disabled = false;
+    },
+  },
 });
 
 export const { disableButtons, enableButtons } = toolbarSlice.actions;
