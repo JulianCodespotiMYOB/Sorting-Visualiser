@@ -6,6 +6,9 @@
       "dom.iterable",
       "esnext"
     ],
+    "rootDirs": [
+      "./src", "./src/components", "./src/common", "./src/features", "./src/redux"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

@@ -1,10 +1,8 @@
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { useCallback } from 'react';
-import { Column } from '../../Slices/columnSlice';
-import { disableButtons } from '../../Slices/toolbarSlice';
-import BubbleSort from '../../SortingAlgorithms/BubbleSort';
-import QuickSort from '../../SortingAlgorithms/QuickSort';
-import SelectionSort from '../../SortingAlgorithms/SelectionSort';
+import { Column } from '../../../common';
+import { BubbleSort, QuickSort, SelectionSort } from '../../../features';
+import { disableButtons } from '../../../redux/slices/toolbarSlice';
 
 interface Props {
   dispatch: Dispatch<AnyAction>;

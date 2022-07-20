@@ -2,7 +2,11 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 
-const initialState = {
+interface State {
+  disabled: boolean;
+}
+
+const initialState: State = {
   disabled: false,
 };
 
@@ -10,10 +14,10 @@ export const toolbarSlice = createSlice({
   name: 'toolbar',
   initialState,
   reducers: {
-    disableButtons: (state: any) => {
+    disableButtons: (state: State) => {
       state.disabled = true;
     },
-    enableButtons: (state: any) => {
+    enableButtons: (state: State) => {
       state.disabled = false;
     },
   },

@@ -1,12 +1,13 @@
-import { Column } from '../Slices/columnSlice';
-import handleDispatch from './AlgorithmActionReducer';
-import { bringToFront } from './AlgorithmHelper';
+import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { Column } from '../common';
+import handleDispatch, { AlgorithmAction } from '../redux/algorithmActionReducer';
+import { bringToFront } from './utilities/algorithmHelper';
 
-function SelectionSort(columns: Column[], dispatch: any) {
+function SelectionSort(columns: Column[], dispatch: Dispatch<AnyAction>) {
   let unsorted = true;
   const amountOfColumns = columns.length;
   const localColumnState = [...columns];
-  const actionsToDispatch = [];
+  const actionsToDispatch = [] as AlgorithmAction[];
   let smallestIndex = 0;
   let currentSmallestIndex = 0;
   let sorts = 0;

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import ColumnsOnPlatform from '../ColumnsOnPlatform';
+import ColumnsOnPlatform from './platform/columnsOnPlatform';
 
 function Body() {
   const columns = useSelector((state: any) => state.columns.columns);

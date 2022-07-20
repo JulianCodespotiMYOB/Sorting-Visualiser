@@ -1,6 +1,7 @@
-import { Column } from '../Slices/columnSlice';
-import handleDispatch from './AlgorithmActionReducer';
-import { swapArrayValues } from './AlgorithmHelper';
+import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { Column } from '../common';
+import handleDispatch from '../redux/algorithmActionReducer';
+import { swapArrayValues } from './utilities/algorithmHelper';
 
 function partition(arr: Column[], start: number, end: number, actionsToDispatch: any[]) {
   const pivotValue = arr[end].height;
@@ -30,7 +31,7 @@ function quickSortRecursive(localColumnState: Column[], start: number, end: numb
   }
 }
 
-function QuickSort(columns: Column[], dispatch: any) {
+function QuickSort(columns: Column[], dispatch: Dispatch<AnyAction>) {
   const localColumnState = [...columns];
   const actionsToDispatch: any[] = [];
   let start = 0;

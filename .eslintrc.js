@@ -26,5 +26,6 @@ module.exports = {
     'import/extensions': [0],
     'max-len': [0],
     'no-param-reassign': [0],
+    'linebreak-style': [0],
   },
 };

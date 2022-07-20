@@ -1,6 +1,7 @@
 import { AnyAction } from '@reduxjs/toolkit';
 import { Dispatch, useCallback } from 'react';
-import { Column, setRandomColumns } from '../../Slices/columnSlice';
+import { Column } from '../../../common';
+import { setRandomColumns } from '../../../redux/slices/columnSlice';
 
 interface Props {
   dispatch: Dispatch<AnyAction>;

@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import columnReducer from '../features/Slices/columnSlice';
-import toolbarReducer from '../features/Slices/toolbarSlice';
+import columnReducer from './slices/columnSlice';
+import toolbarReducer from './slices/toolbarSlice';
 
 export const store = configureStore({
   reducer: {
