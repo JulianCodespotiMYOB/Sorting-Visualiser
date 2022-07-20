@@ -41,10 +41,10 @@ const algorithmActionReducer = async (dispatch: any, action: AlgorithmAction) =>
   }
 };
 
-export async function handleDispatch(dispatch: any, actionsToDispatch: AlgorithmAction[]) {
+export async function handleDispatch(dispatch: any, actionsToDispatch: AlgorithmAction[], dispatchSpeed: number) {
   for (let i = 0; i < actionsToDispatch.length; i += 1) {
     const action = actionsToDispatch[i];
-    await sleep(50000 / actionsToDispatch.length);
+    await sleep(20000 / dispatchSpeed / (actionsToDispatch.length / 60));
     await algorithmActionReducer(dispatch, action);
   }
   dispatch(enableButtons());

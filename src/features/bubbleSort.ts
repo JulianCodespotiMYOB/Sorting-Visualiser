@@ -4,7 +4,7 @@ import { Column } from '../common';
 import handleDispatch from '../redux/algorithmActionReducer';
 import { swapArrayValues } from './utilities/algorithmHelper';
 
-function BubbleSort(columns: Column[], dispatch: Dispatch<AnyAction>) {
+function BubbleSort(columns: Column[], dispatch: Dispatch<AnyAction>, dispatchSpeed: number) {
   let unsorted = true;
   const amountOfColumns = columns.length;
   const localColumnState = [...columns];
@@ -25,7 +25,7 @@ function BubbleSort(columns: Column[], dispatch: Dispatch<AnyAction>) {
     }
     swapsPerLoop = 0;
   }
-  handleDispatch(dispatch, actionsToDispatch);
+  handleDispatch(dispatch, actionsToDispatch, dispatchSpeed);
 }
 
 export default BubbleSort;

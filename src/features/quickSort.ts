@@ -31,7 +31,7 @@ function quickSortRecursive(localColumnState: Column[], start: number, end: numb
   }
 }
 
-function QuickSort(columns: Column[], dispatch: Dispatch<AnyAction>) {
+function QuickSort(columns: Column[], dispatch: Dispatch<AnyAction>, dispatchSpeed: number) {
   const localColumnState = [...columns];
   const actionsToDispatch: any[] = [];
   let start = 0;
@@ -45,7 +45,7 @@ function QuickSort(columns: Column[], dispatch: Dispatch<AnyAction>) {
     start = pivotIndex + 1;
     end = pivotIndex - 1;
   }
-  handleDispatch(dispatch, actionsToDispatch);
+  handleDispatch(dispatch, actionsToDispatch, dispatchSpeed);
 }
 
 export default QuickSort;

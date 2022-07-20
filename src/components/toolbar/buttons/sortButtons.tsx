@@ -8,22 +8,25 @@ interface Props {
   dispatch: Dispatch<AnyAction>;
   columns: Column[];
   disabled: boolean;
+  dispatchSpeed: number
 }
 
-function SortButtons({ dispatch, columns, disabled }: Props) {
+function SortButtons({
+  dispatch, columns, disabled, dispatchSpeed,
+}: Props) {
   const onClickBubblesort = useCallback(() => {
     dispatch(disableButtons());
-    BubbleSort(columns, dispatch);
+    BubbleSort(columns, dispatch, dispatchSpeed);
   }, [columns, dispatch]);
 
   const onClickQuicksort = useCallback(() => {
     dispatch(disableButtons());
-    QuickSort(columns, dispatch);
+    QuickSort(columns, dispatch, dispatchSpeed);
   }, [columns, dispatch]);
 
   const onClickSelectionSort = useCallback(() => {
     dispatch(disableButtons());
-    SelectionSort(columns, dispatch);
+    SelectionSort(columns, dispatch, dispatchSpeed);
   }, [columns, dispatch]);
 
   return (

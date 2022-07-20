@@ -3,7 +3,7 @@ import { Column } from '../common';
 import handleDispatch, { AlgorithmAction } from '../redux/algorithmActionReducer';
 import { bringToFront } from './utilities/algorithmHelper';
 
-function SelectionSort(columns: Column[], dispatch: Dispatch<AnyAction>) {
+function SelectionSort(columns: Column[], dispatch: Dispatch<AnyAction>, dispatchSpeed: number) {
   let unsorted = true;
   const amountOfColumns = columns.length;
   const localColumnState = [...columns];
@@ -30,10 +30,8 @@ function SelectionSort(columns: Column[], dispatch: Dispatch<AnyAction>) {
     bringToFront(localColumnState, currentSmallestIndex);
     smallestIndex += 1;
     sorts += 1;
-    // eslint-disable-next-line no-debugger
-    debugger;
   }
-  handleDispatch(dispatch, actionsToDispatch);
+  handleDispatch(dispatch, actionsToDispatch, dispatchSpeed);
 }
 
 export default SelectionSort;

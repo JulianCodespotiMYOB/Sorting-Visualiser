@@ -4,10 +4,12 @@ import {
 
 interface State {
   disabled: boolean;
+  speed: number | number[]
 }
 
 const initialState: State = {
   disabled: false,
+  speed: 100,
 };
 
 export const toolbarSlice = createSlice({
@@ -20,9 +22,12 @@ export const toolbarSlice = createSlice({
     enableButtons: (state: State) => {
       state.disabled = false;
     },
+    setSpeed: (state: State, action: { payload: number | number[] }) => {
+      state.speed = action.payload;
+    },
   },
 });
 
-export const { disableButtons, enableButtons } = toolbarSlice.actions;
+export const { disableButtons, enableButtons, setSpeed } = toolbarSlice.actions;
 
 export default toolbarSlice.reducer;
