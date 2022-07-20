@@ -1,7 +1,6 @@
-import ColumnGraphic from './Column';
-import { Column } from '../Slices/columnSlice';
-
-import Platform from './Platform';
+import { Column } from '../../../common';
+import ColumnGrapic from '../column/column';
+import Platform from './platform';
 
 function ColumnsOnPlatform(props: { width: number; columns: Column[]; margin: number }) {
   const { width, columns, margin } = props;
@@ -15,7 +14,7 @@ function ColumnsOnPlatform(props: { width: number; columns: Column[]; margin: nu
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline' }}>
         {columns.map((column) => (
           <div style={marginStyle()}>
-            <ColumnGraphic width={width} height={column.height} colour={column.colour} />
+            <ColumnGrapic width={width} height={column.height} colour={column.colour} />
           </div>
         ))}
       </div>

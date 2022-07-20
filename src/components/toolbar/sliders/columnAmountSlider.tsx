@@ -1,6 +1,6 @@
 import Slider from '@mui/material/Slider';
 import { useDispatch } from 'react-redux';
-import { setColumnAmount } from '../../Slices/columnSlice';
+import { setColumnAmount } from '../../../redux/slices/columnSlice';
 
 function ColumnAmountSlider(props: any) {
   const { disabled } = props;

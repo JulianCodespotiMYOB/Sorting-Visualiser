@@ -1,7 +1,4 @@
-/* eslint-disable no-await-in-loop */
-import {
-  Column,
-} from '../Slices/columnSlice';
+import { Column } from '../../common';
 
 export function swapArrayValues(array: Column[], left: number, right: number) {
   const temp = array[left];

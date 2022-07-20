@@ -1,15 +1,15 @@
-import './App.css';
-import Body from './features/Components/Body/Body';
-import Toolbar from './features/Components/Toolbar/Toolbar';
+import './app.css';
+import { Toolbar, Body } from './components';
+import * as SC from './app.styles';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <SC.Body>
+      <SC.Header>
         <Toolbar />
-      </header>
+      </SC.Header>
       <Body />
-    </div>
+    </SC.Body>
   );
 }
 

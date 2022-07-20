@@ -5,8 +5,13 @@ const columnStyle = (width: number, height: number, colour: string) => ({
   fontSize: `${width}px`,
 });
 
-function Column(props: { width: number; height: number; colour: string }) {
-  const { width, height, colour } = props;
+interface Props {
+  width: number;
+  height: number;
+  colour: string;
+}
+
+function Column({ width, height, colour }: Props) {
   return (
     <div className="Column" style={columnStyle(width, height, colour)}>
       {height.toFixed(0)}

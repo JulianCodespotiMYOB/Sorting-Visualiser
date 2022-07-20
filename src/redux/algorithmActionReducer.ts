@@ -1,11 +1,18 @@
 /* eslint-disable no-await-in-loop */
-import sleep from '../Common/sleep';
+import sleep from '../common/sleep';
 import {
   colourSelectedColumns, resetColumnColours, resetColumnColoursExcept, swapColumns, bringColumnToFront,
-} from '../Slices/columnSlice';
-import { enableButtons } from '../Slices/toolbarSlice';
+} from './slices/columnSlice';
+import { enableButtons } from './slices/toolbarSlice';
 
-const algorithmActionReducer = async (dispatch: any, action: any) => {
+type AlgorithmActionKey = 'swap' | 'bringToFront' | 'select' | 'reset' | 'resetExcept' | 'enableButtons';
+
+export interface AlgorithmAction {
+  type: AlgorithmActionKey;
+  payload: any;
+}
+
+const algorithmActionReducer = async (dispatch: any, action: AlgorithmAction) => {
   switch (action.type) {
     case 'swap':
       dispatch(colourSelectedColumns({ indexesToColour: action.payload, colour: 'green' }));
@@ -34,7 +41,7 @@ const algorithmActionReducer = async (dispatch: any, action: any) => {
   }
 };
 
-export async function handleDispatch(dispatch: any, actionsToDispatch: any[]) {
+export async function handleDispatch(dispatch: any, actionsToDispatch: AlgorithmAction[]) {
   for (let i = 0; i < actionsToDispatch.length; i += 1) {
     const action = actionsToDispatch[i];
     await sleep(50000 / actionsToDispatch.length);

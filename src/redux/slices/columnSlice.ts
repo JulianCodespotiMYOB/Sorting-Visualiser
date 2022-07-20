@@ -1,14 +1,15 @@
 import {
   createSlice, PayloadAction,
 } from '@reduxjs/toolkit';
+import { Column } from '../../common';
 
-export interface Column {
+interface State {
+  columns: Column[];
   width: number;
-  height: number;
-  colour: string;
+  margin: number;
 }
 
-const initialState = {
+const initialState: State = {
   columns: [],
   width: 20,
   margin: 10,
@@ -18,7 +19,7 @@ export const columnSlice = createSlice({
   name: 'column',
   initialState,
   reducers: {
-    setRandomColumns: (state: any) => {
+    setRandomColumns: (state: State) => {
       const columns = [];
       const randomAmount = Math.floor(Math.random() * (50 - 10 + 1)) + 10;
       state.width = 400 / randomAmount;
@@ -32,7 +33,7 @@ export const columnSlice = createSlice({
       }
       state.columns = columns;
     },
-    setColumnAmount: (state: any, { payload }: PayloadAction<any>) => {
+    setColumnAmount: (state: State, { payload }: PayloadAction<any>) => {
       const columns = [];
       state.width = 400 / payload;
       state.margin = 200 / payload;
@@ -46,14 +47,14 @@ export const columnSlice = createSlice({
 
       state.columns = columns;
     },
-    swapColumns: (state: any, { payload }: PayloadAction<any>) => {
+    swapColumns: (state: State, { payload }: PayloadAction<any>) => {
       const { columns } = state;
       const temp = columns[payload.index1];
       columns[payload.index1] = columns[payload.index2];
       columns[payload.index2] = temp;
       state.columns = columns;
     },
-    bringColumnToFront: (state: any, { payload }: PayloadAction<any>) => {
+    bringColumnToFront: (state: State, { payload }: PayloadAction<any>) => {
       const { columns } = state;
       const temp = columns[payload.index];
       for (let i = payload.index; i > 0; i -= 1) {
@@ -62,21 +63,21 @@ export const columnSlice = createSlice({
       columns[0] = temp;
       state.columns = columns;
     },
-    colourSelectedColumns: (state: any, { payload }: PayloadAction<any>) => {
+    colourSelectedColumns: (state: State, { payload }: PayloadAction<any>) => {
       const { columns } = state;
       for (let i = 0; i < payload.indexesToColour.length; i += 1) {
         columns[payload.indexesToColour[i]].colour = payload.colour;
       }
       state.columns = columns;
     },
-    resetColumnColours: (state: any) => {
+    resetColumnColours: (state: State) => {
       const { columns } = state;
       columns.forEach((column: Column) => {
         column.colour = '#80bced';
       });
       state.columns = columns;
     },
-    resetColumnColoursExcept: (state: any, { payload }: PayloadAction<any>) => {
+    resetColumnColoursExcept: (state: State, { payload }: PayloadAction<any>) => {
       const { columns } = state;
       const exceptionColumnIndexes = payload.index;
       for (let i = 0; i < columns.length; i += 1) {

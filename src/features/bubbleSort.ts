@@ -1,12 +1,14 @@
-import { Column } from '../Slices/columnSlice';
-import handleDispatch from './AlgorithmActionReducer';
-import { swapArrayValues } from './AlgorithmHelper';
+import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { AlgorithmAction } from '../redux';
+import { Column } from '../common';
+import handleDispatch from '../redux/algorithmActionReducer';
+import { swapArrayValues } from './utilities/algorithmHelper';
 
-function BubbleSort(columns: Column[], dispatch: any) {
+function BubbleSort(columns: Column[], dispatch: Dispatch<AnyAction>) {
   let unsorted = true;
   const amountOfColumns = columns.length;
   const localColumnState = [...columns];
-  const actionsToDispatch = [];
+  const actionsToDispatch = [] as AlgorithmAction[];
   let swapsPerLoop = 0;
   while (unsorted) {
     for (let i = 0; i < amountOfColumns - 1; i += 1) {
