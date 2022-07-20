@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import ColumnAmountSlider from './ColumnAmountSlider';
 import RandomizeButton from './RandomizeButton';
-import SortButton from './SortButton';
+import SortButtons from './SortButtons';
 
 function Toolbar() {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function Toolbar() {
   return (
     <div className="Toolbar">
       <RandomizeButton dispatch={dispatch} disabled={disabled} columns={columns} />
-      <SortButton dispatch={dispatch} columns={columns} disabled={disabled} />
+      <SortButtons dispatch={dispatch} columns={columns} disabled={disabled} />
       <ColumnAmountSlider disabled={disabled} />
     </div>
   );

@@ -1,5 +1,6 @@
 import { Column } from '../Slices/columnSlice';
-import { handleDispatch, swapArrayValues } from './AlgorithmHelper';
+import handleDispatch from './AlgorithmActionReducer';
+import { swapArrayValues } from './AlgorithmHelper';
 
 function BubbleSort(columns: Column[], dispatch: any) {
   let unsorted = true;
@@ -9,10 +10,10 @@ function BubbleSort(columns: Column[], dispatch: any) {
   let swapsPerLoop = 0;
   while (unsorted) {
     for (let i = 0; i < amountOfColumns - 1; i += 1) {
-      actionsToDispatch.push({ reset: true });
-      actionsToDispatch.push({ selectColumns: [i, i + 1] });
+      actionsToDispatch.push({ type: 'reset', payload: [] });
+      actionsToDispatch.push({ type: 'select', payload: { indexes: [i, i + 1], colour: 'red' } });
       if (localColumnState[i].height < localColumnState[i + 1].height) {
-        actionsToDispatch.push({ swap: [i, i + 1] });
+        actionsToDispatch.push({ type: 'swap', payload: [i, i + 1] });
         swapArrayValues(localColumnState, i, i + 1);
         swapsPerLoop += 1;
       }

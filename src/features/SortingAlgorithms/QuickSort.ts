@@ -1,19 +1,23 @@
 import { Column } from '../Slices/columnSlice';
-import { handleDispatch, swapArrayValues } from './AlgorithmHelper';
+import handleDispatch from './AlgorithmActionReducer';
+import { swapArrayValues } from './AlgorithmHelper';
 
 function partition(arr: Column[], start: number, end: number, actionsToDispatch: any[]) {
   const pivotValue = arr[end].height;
   let pivotIndex = start;
   for (let i = start; i < end; i += 1) {
-    actionsToDispatch.push({ resetExcept: end });
-    actionsToDispatch.push({ selectColumns: [i, end] });
+    actionsToDispatch.push({ type: 'resetExcept', payload: [end, pivotIndex] });
+    actionsToDispatch.push({ type: 'select', payload: { indexes: [i], colour: 'red' } });
+    actionsToDispatch.push({ type: 'select', payload: { indexes: [pivotIndex, end], colour: 'pink' } });
     if (arr[i].height < pivotValue) {
-      actionsToDispatch.push({ swap: [i, pivotIndex] });
+      if (i !== pivotIndex) {
+        actionsToDispatch.push({ type: 'swap', payload: [i, pivotIndex] });
+      }
       swapArrayValues(arr, i, pivotIndex);
       pivotIndex += 1;
     }
   }
-  actionsToDispatch.push({ swap: [pivotIndex, end] });
+  actionsToDispatch.push({ type: 'swap', payload: [end, pivotIndex] });
   swapArrayValues(arr, pivotIndex, end);
   return pivotIndex;
 }

@@ -1,6 +1,6 @@
 import { AnyAction } from '@reduxjs/toolkit';
 import { Dispatch, useCallback } from 'react';
-import { Column, setColumns } from '../../Slices/columnSlice';
+import { Column, setRandomColumns } from '../../Slices/columnSlice';
 
 interface Props {
   dispatch: Dispatch<AnyAction>;
@@ -10,7 +10,7 @@ interface Props {
 
 function RandomizeButton({ dispatch, columns, disabled }: Props) {
   const onRandomizeButtonClick = useCallback(() => {
-    dispatch(setColumns());
+    dispatch(setRandomColumns());
   }, [columns, dispatch]);
 
   return (

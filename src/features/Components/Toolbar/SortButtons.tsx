@@ -4,6 +4,7 @@ import { Column } from '../../Slices/columnSlice';
 import { disableButtons } from '../../Slices/toolbarSlice';
 import BubbleSort from '../../SortingAlgorithms/BubbleSort';
 import QuickSort from '../../SortingAlgorithms/QuickSort';
+import SelectionSort from '../../SortingAlgorithms/SelectionSort';
 
 interface Props {
   dispatch: Dispatch<AnyAction>;
@@ -11,7 +12,7 @@ interface Props {
   disabled: boolean;
 }
 
-function SortButton({ dispatch, columns, disabled }: Props) {
+function SortButtons({ dispatch, columns, disabled }: Props) {
   const onClickBubblesort = useCallback(() => {
     dispatch(disableButtons());
     BubbleSort(columns, dispatch);
@@ -22,6 +23,11 @@ function SortButton({ dispatch, columns, disabled }: Props) {
     QuickSort(columns, dispatch);
   }, [columns, dispatch]);
 
+  const onClickSelectionSort = useCallback(() => {
+    dispatch(disableButtons());
+    SelectionSort(columns, dispatch);
+  }, [columns, dispatch]);
+
   return (
     <>
       <button disabled={disabled} onClick={onClickBubblesort} type="button">
@@ -30,8 +36,11 @@ function SortButton({ dispatch, columns, disabled }: Props) {
       <button disabled={disabled} onClick={onClickQuicksort} type="button">
         Quick Sort
       </button>
+      <button disabled={disabled} onClick={onClickSelectionSort} type="button">
+        Selection Sort
+      </button>
     </>
   );
 }
 
-export default SortButton;
+export default SortButtons;
