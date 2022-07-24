@@ -1,10 +1,24 @@
 import Slider from '@mui/material/Slider';
-import { useDispatch } from 'react-redux';
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { State } from '../../../redux';
 import { setSpeed } from '../../../redux/slices/toolbarSlice';
 
-function SpeedAmountSlider(props: any) {
-  const { disabled } = props;
+function SpeedAmountSlider() {
   const dispatch = useDispatch();
+
+  const disabled = useSelector((state: State) => state.toolbar.disabled);
+
+  const onChangeCommitted = useCallback((event: any, value: number | number[]) => {
+    let speed = value as number;
+
+    if (Array.isArray(value)) {
+      speed = value?.[0] ?? 0;
+    }
+
+    dispatch(setSpeed(speed));
+  }, [dispatch]);
+
   return (
     <div style={{ margin: 100 }}>
       <h3>Sorting Speed</h3>
@@ -15,7 +29,7 @@ function SpeedAmountSlider(props: any) {
         step={1}
         min={10}
         max={50000}
-        onChangeCommitted={(event, value) => dispatch(setSpeed(value))}
+        onChangeCommitted={onChangeCommitted}
         size="medium"
         disabled={disabled}
       />

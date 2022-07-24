@@ -18,6 +18,7 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'eslint-plugin-react-hooks',
   ],
   rules: {
     'react/jsx-filename-extension': [0],
@@ -27,5 +28,7 @@ module.exports = {
     'max-len': [0],
     'no-param-reassign': [0],
     'linebreak-style': [0],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
   },
 };

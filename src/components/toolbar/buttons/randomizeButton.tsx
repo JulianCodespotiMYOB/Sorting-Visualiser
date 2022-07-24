@@ -1,15 +1,14 @@
-import { AnyAction } from '@reduxjs/toolkit';
-import { Dispatch, useCallback } from 'react';
-import { Column } from '../../../common';
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { State } from '../../../redux';
 import { setRandomColumns } from '../../../redux/slices/columnSlice';
 
-interface Props {
-  dispatch: Dispatch<AnyAction>;
-  columns: Column[];
-  disabled: boolean;
-}
+function RandomizeButton() {
+  const dispatch = useDispatch();
 
-function RandomizeButton({ dispatch, columns, disabled }: Props) {
+  const columns = useSelector((state: State) => state.columns.columns);
+  const disabled = useSelector((state: State) => state.toolbar.disabled);
+
   const onRandomizeButtonClick = useCallback(() => {
     dispatch(setRandomColumns());
   }, [columns, dispatch]);

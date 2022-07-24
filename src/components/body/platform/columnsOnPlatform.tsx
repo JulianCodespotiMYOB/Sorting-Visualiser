@@ -1,13 +1,24 @@
-import { Column } from '../../../common';
+import { useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
 import ColumnGrapic from '../column/column';
 import Platform from './platform';
+import { State } from '../../../redux';
+import { Column } from '../../../common';
 
-function ColumnsOnPlatform(props: { width: number; columns: Column[]; margin: number }) {
-  const { width, columns, margin } = props;
+function ColumnsOnPlatform() {
+  const columns = useSelector((state: State) => state.columns.columns);
+  const width = useSelector((state: State) => state.columns.width);
+  const margin = useSelector((state: State) => state.columns.margin);
+
   const platformWidth = width * columns.length + margin * (columns.length - 1);
   const marginStyle = () => ({
     marginRight: `${margin}px`,
   });
+
+  const previousColumns = useRef<Column[]>();
+  useEffect(() => {
+    previousColumns.current = columns;
+  }, [columns]);
 
   return (
     <div className="ColumnsOnPlatform">

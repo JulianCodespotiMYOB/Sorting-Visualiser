@@ -1,16 +1,19 @@
-import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { Column } from '../common';
-import handleDispatch, { AlgorithmAction } from '../redux/algorithmActionReducer';
+import { AlgorithmAction } from '../redux/algorithmActionReducer';
 import { bringToFront } from './utilities/algorithmHelper';
 
-function SelectionSort(columns: Column[], dispatch: Dispatch<AnyAction>, dispatchSpeed: number) {
-  let unsorted = true;
+function SelectionSort(columns: Column[]): AlgorithmAction[] {
   const amountOfColumns = columns.length;
   const localColumnState = [...columns];
   const actionsToDispatch = [] as AlgorithmAction[];
+
   let smallestIndex = 0;
   let currentSmallestIndex = 0;
   let sorts = 0;
+  let unsorted = true;
+
+  actionsToDispatch.push({ type: 'start', payload: { } });
+
   while (unsorted) {
     for (let i = smallestIndex; i < amountOfColumns - 1; i += 1) {
       actionsToDispatch.push({ type: 'resetExcept', payload: [currentSmallestIndex] });
@@ -31,7 +34,9 @@ function SelectionSort(columns: Column[], dispatch: Dispatch<AnyAction>, dispatc
     smallestIndex += 1;
     sorts += 1;
   }
-  handleDispatch(dispatch, actionsToDispatch, dispatchSpeed);
+
+  actionsToDispatch.push({ type: 'done', payload: {} });
+  return actionsToDispatch;
 }
 
 export default SelectionSort;

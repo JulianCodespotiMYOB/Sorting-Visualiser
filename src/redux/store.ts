@@ -1,6 +1,19 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import columnReducer from './slices/columnSlice';
-import toolbarReducer from './slices/toolbarSlice';
+import {
+  configureStore, ThunkAction, Action, createListenerMiddleware,
+} from '@reduxjs/toolkit';
+import columnReducer, { sortListener } from './slices/columnSlice';
+import toolbarReducer, { cancelled } from './slices/toolbarSlice';
+
+const listenerMiddleware = createListenerMiddleware();
+
+listenerMiddleware.startListening(sortListener);
+listenerMiddleware.startListening({
+  actionCreator: cancelled,
+  effect: async () => {
+    listenerMiddleware.stopListening({ ...sortListener, cancelActive: true });
+    listenerMiddleware.startListening(sortListener);
+  },
+});
 
 export const store = configureStore({
   reducer: {
@@ -9,7 +22,7 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false,
-  }),
+  }).prepend(listenerMiddleware.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

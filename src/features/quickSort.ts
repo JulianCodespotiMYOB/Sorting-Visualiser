@@ -1,6 +1,5 @@
-import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { Column } from '../common';
-import handleDispatch from '../redux/algorithmActionReducer';
+import { AlgorithmAction } from '../redux/algorithmActionReducer';
 import { swapArrayValues } from './utilities/algorithmHelper';
 
 function partition(arr: Column[], start: number, end: number, actionsToDispatch: any[]) {
@@ -31,11 +30,14 @@ function quickSortRecursive(localColumnState: Column[], start: number, end: numb
   }
 }
 
-function QuickSort(columns: Column[], dispatch: Dispatch<AnyAction>, dispatchSpeed: number) {
+function QuickSort(columns: Column[]): AlgorithmAction[] {
   const localColumnState = [...columns];
-  const actionsToDispatch: any[] = [];
+  const actionsToDispatch: AlgorithmAction[] = [];
+
   let start = 0;
   let end = localColumnState.length - 1;
+
+  actionsToDispatch.push({ type: 'start', payload: { } });
 
   while (start < end) {
     const pivotIndex = partition(localColumnState, start, end, actionsToDispatch);
@@ -45,7 +47,9 @@ function QuickSort(columns: Column[], dispatch: Dispatch<AnyAction>, dispatchSpe
     start = pivotIndex + 1;
     end = pivotIndex - 1;
   }
-  handleDispatch(dispatch, actionsToDispatch, dispatchSpeed);
+
+  actionsToDispatch.push({ type: 'done', payload: {} });
+  return actionsToDispatch;
 }
 
 export default QuickSort;

@@ -1,10 +1,13 @@
 import Slider from '@mui/material/Slider';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { State } from '../../../redux';
 import { setColumnAmount } from '../../../redux/slices/columnSlice';
 
-function ColumnAmountSlider(props: any) {
-  const { disabled } = props;
+function ColumnAmountSlider() {
   const dispatch = useDispatch();
+
+  const disabled = useSelector((state: State) => state.toolbar.disabled);
+
   return (
     <div style={{ margin: 100 }}>
       <h3>Amount of Columns</h3>
